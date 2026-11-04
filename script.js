@@ -1,19 +1,25 @@
-let products=JSON.parse(localStorage.getItem('products'))||[{id:1,name:"লুঙ্গি",price:500,img:"https://via.placeholder.com/150"}];
-let cart=JSON.parse(localStorage.getItem('cart'))||[];let users=JSON.parse(localStorage.getItem('users'))||[];let orders=JSON.parse(localStorage.getItem('orders'))||[];
-function save(){localStorage.setItem('products',JSON.stringify(products));localStorage.setItem('cart',JSON.stringify(cart));localStorage.setItem('users',JSON.stringify(users));localStorage.setItem('orders',JSON.stringify(orders));}
-function renderProducts(){const q=(document.getElementById('searchInput')?.value||'').toLowerCase();const l=document.getElementById('productList');if(!l)return;l.innerHTML='';products.filter(p=>p.name.toLowerCase().includes(q)).forEach(p=>{l.innerHTML+=`<div style="background:#222;padding:10px;border-radius:8px;text-align:center"><img src="${p.img}" style="width:100%;height:120px;object-fit:cover"><h4>${p.name}</h4><p>${p.price} Tk</p><button onclick="addToCart(${p.id})" style="width:100%;padding:6px;background:#ff8c00;border:none;border-radius:5px">কার্টে যোগ</button></div>`;});}
-function addToCart(id){const p=products.find(x=>x.id===id);cart.push(p);save();document.getElementById('cartCount').innerText=cart.length;alert('যোগ হয়েছে');}
-function openCart(){renderCart();document.getElementById('cartModal').style.display='block';}function closeCart(){document.getElementById('cartModal').style.display='none';}
-function renderCart(){const d=document.getElementById('cartItems');d.innerHTML='';let t=0;cart.forEach((c,i)=>{t+=c.price;d.innerHTML+=`<p>${c.name}-${c.price} <button onclick="removeCart(${i})">X</button></p>`;});document.getElementById('cartTotal').innerText=t;}
-function removeCart(i){cart.splice(i,1);save();renderCart();document.getElementById('cartCount').innerText=cart.length;}
-function placeOrder(){const n=document.getElementById('cName').value,p=document.getElementById('cPhone').value;if(!n||!p){alert('নাম ফোন দিন');return;}const total=cart.reduce((s,c)=>s+c.price,0);orders.push({name:n,phone:p,total,date:new Date().toLocaleString(),items:[...cart]});save();cart=[];save();alert('অর্ডার হয়েছে');closeCart();document.getElementById('cartCount').innerText=0;}
-function openAuth(){document.getElementById('authModal').style.display='block';}function closeAuth(){document.getElementById('authModal').style.display='none';}
-function register(){const n=document.getElementById('aName').value,ph=document.getElementById('aPhone').value,pa=document.getElementById('aPass').value;if(!n||!ph||!pa){document.getElementById('authMsg').innerText='সব পূরণ করুন';return;}users.push({name:n,phone:ph,pass:pa});save();document.getElementById('authMsg').innerText='রেজিস্টার হয়েছে';}
-function login(){const ph=document.getElementById('aPhone').value,pa=document.getElementById('aPass').value;const u=users.find(x=>x.phone===ph&&x.pass===pa);if(u){document.getElementById('authMsg').innerText='সফল: '+u.name;setTimeout(closeAuth,1000);}else{document.getElementById('authMsg').innerText='ভুল';}}
-function openAdmin(){document.getElementById('adminModal').style.display='block';}function closeAdmin(){document.getElementById('adminModal').style.display='none';}
-function adminLogin(){if(document.getElementById('adminPass').value==='Bd#2026@Kroy!123'){document.getElementById('adminLogin').style.display='none';document.getElementById('adminPanel').style.display='block';renderAdmin();}else{alert('ভুল পাস');}}
-function renderAdmin(){document.getElementById('totalCustomers').innerText=users.length;document.getElementById('totalOrders').innerText=orders.length;document.getElementById('customerList').innerHTML=users.map(u=>`<p>👤 ${u.name}-${u.phone}</p>`).join('');document.getElementById('orderList').innerHTML=orders.map(o=>`<p>🛒 ${o.name}-${o.phone}-${o.total}Tk</p>`).join('');document.getElementById('adminProductList').innerHTML=products.map(p=>`<p>${p.name} <button onclick="delProduct(${p.id})">ডিলিট</button></p>`).join('');}
-function addProduct(){const n=document.getElementById('pName').value,pr=parseInt(document.getElementById('pPrice').value),img=document.getElementById('pImg').value||'https://via.placeholder.com/150';if(!n||!pr){alert('নাম দাম দিন');return;}products.push({id:Date.now(),name:n,price:pr,img});save();renderProducts();renderAdmin();}
-function delProduct(id){products=products.filter(p=>p.id!==id);save();renderProducts();renderAdmin();}
-renderProducts();document.getElementById('cartCount').innerText=cart.length;
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#111;color:#fff;overflow-x:hidden}
+header{background:#000;padding:15px;text-align:center;position:sticky;top:0;z-index:100;border-bottom:2px solid #ff8c00}
+.logo{font-size:22px;color:#ff8c00;font-weight:bold}
+.addr{font-size:13px;color:#ccc;margin:6px 0}
+.top-btns button{padding:8px 14px;background:#222;color:#fff;border:1px solid #ff8c00;border-radius:6px;margin:3px;cursor:pointer}
+.top-btns button:hover{background:#ff8c00;color:#000}
+.banner{position:relative;text-align:center}
+.banner img{width:100%;max-height:380px;object-fit:cover}
+.banner h1{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:linear-gradient(#c9a86a,#8a6d3b);color:#000;padding:8px 20px;border-radius:20px;font-size:22px;border:2px solid gold}
+.search-box{padding:15px}
+.search-box input{width:100%;padding:12px;border-radius:8px;border:none;background:#222;color:#fff;font-size:16px}
+#productList{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:15px}
+#productList>div{background:#222;padding:10px;border-radius:12px;text-align:center;border:1px solid #333}
+#productList img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+#productList h4{margin:8px 0;font-size:15px}
+#productList p{color:#ff8c00;font-weight:bold}
+#productList button{width:100%;padding:8px;background:#ff8c00;border:none;border-radius:6px;color:#fff;font-weight:bold;margin-top:6px}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:500;overflow:auto}
+.modal-box{background:#222;margin:10% auto;padding:20px;width:90%;max-width:420px;border-radius:12px;position:relative}
+.admin-box{max-width:600px}
+.close{position:absolute;right:15px;top:10px;font-size:28px;cursor:pointer;color:#aaa}
+.modal-box input{width:100%;padding:10px;margin:6px 0;background:#333;color:#fff;border:1px solid #444;border-radius:6px}
+.btn-main{width:100%;padding:10px;background:#ff8c00;border:none;border-radius:6px;color:#fff;font-weight:bold;margin-top:6px;cursor:pointer}
+footer{text-align:center;padding:18px;background:#000;color:#888;font-size:12px;margin-top:20px;border-top:1px solid #222}
