@@ -1,21 +1,9 @@
 {
   "name": "ক্রয় বিক্রয় ডটকম",
   "short_name": "ক্রয় বিক্রয়",
-  "description": "মেষ্টা, হাজীপুর বাজার, জামালপুর",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#ff8c00",
-  "icons": [
-    {
-      "src": "banner.jpg",
-      "sizes": "192x192",
-      "type": "image/jpeg"
-    },
-    {
-      "src": "banner.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg"
-    }
-  ]
+  "icons": [{"src": "banner.jpg","sizes": "192x192","type": "image/jpeg"},{"src": "banner.jpg","sizes": "512x512","type": "image/jpeg"}]
 }
