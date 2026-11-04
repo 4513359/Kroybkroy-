@@ -3,83 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ক্রয় বিক্রয় ডটকম - জামালপুর</title>
+<title>ক্রয় বিক্রয় ডটকম</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff8c00">
-<link rel="apple-touch-icon" href="banner.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-  <div class="logo">🛒 ক্রয় বিক্রয় ডটকম</div>
-  <div class="loc">📍 মেষ্টা, হাজীপুর বাজার, জামালপুর</div>
-  <div class="top-btns">
-    <button onclick="openAuth()">👤 লগইন</button>
-    <button onclick="openCart()">🛒 কার্ট (<span id="cartCount">0</span>)</button>
-    <button onclick="openAdmin()">⚙️ এডমিন</button>
-  </div>
+<div class="logo">🛒 ক্রয় বিক্রয় ডটকম</div>
+<div class="addr">📍 মেষ্টা, হাজীপুর বাজার, জামালপুর | 📞 01637554829</div>
+<div class="top-btns">
+<button onclick="openAuth()">👤 লগইন</button>
+<button onclick="openCart()">🛒 কার্ট (<span id="cartCount">0</span>)</button>
+<button onclick="openAdmin()">⚙️ এডমিন</button>
+</div>
 </header>
-
-<div class="banner"><img src="banner.jpg" onerror="this.src='https://i.imgur.com/Qk0p2bO.jpg'"></div>
-
+<div class="banner">
+<img src="banner.jpg" onerror="this.src='https://via.placeholder.com/1200x400?text=ক্রয়+বিক্রয়+ডটকম'">
+<h1>ক্রয় বিক্রয় ডটকম</h1>
+</div>
 <div class="search-box">
-  <input id="searchInput" placeholder="পণ্য খুঁজুন..." oninput="renderProducts()">
+<input id="searchInput" placeholder="🔍 পণ্য খুঁজুন..." oninput="renderProducts()">
+</div>
+<div id="productList"></div>
+
+<div id="authModal" class="modal">
+<div class="modal-box">
+<span class="close" onclick="closeAuth()">&times;</span>
+<h3>👤 একাউন্ট</h3>
+<input id="aName" placeholder="নাম">
+<input id="aPhone" placeholder="ফোন 01...">
+<div style="position:relative">
+<input id="aPass" type="password" placeholder="পাসওয়ার্ড" style="padding-right:40px">
+<span onclick="togglePass('aPass',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:20px">👁️</span>
+</div>
+<input id="aNID" placeholder="NID">
+<button class="btn-main" onclick="register()">রেজিস্টার</button>
+<button class="btn-main" onclick="login()">লগইন</button>
+<p id="authMsg"></p>
+</div>
 </div>
 
-<div id="productList" class="products"></div>
+<div id="cartModal" class="modal">
+<div class="modal-box">
+<span class="close" onclick="closeCart()">&times;</span>
+<h3>🛒 কার্ট</h3>
+<div id="cartItems"></div>
+<h4>মোট: <span id="cartTotal">0</span> Tk</h4>
+<input id="cName" placeholder="নাম">
+<input id="cPhone" placeholder="ফোন">
+<input id="cAddress" placeholder="ঠিকানা">
+<button class="btn-main" onclick="placeOrder()">✅ অর্ডার করুন</button>
+</div>
+</div>
 
-<!-- Auth Modal -->
-<div id="authModal" class="modal"><div class="modal-content">
-  <span class="close" onclick="closeAuth()">&times;</span>
-  <h3>👤 একাউন্ট</h3>
-  <input id="aName" placeholder="নাম">
-  <input id="aPhone" placeholder="ফোন 01...">
-  <input id="aPass" type="password" placeholder="পাসওয়ার্ড">
-  <input id="aNID" placeholder="NID (ঐচ্ছিক)">
-  <input id="aPhoto" type="file" accept="image/*">
-  <button onclick="register()">রেজিস্টার</button>
-  <button onclick="login()">লগইন</button>
-  <p id="authMsg"></p>
-</div></div>
+<div id="adminModal" class="modal">
+<div class="modal-box admin-box">
+<span class="close" onclick="closeAdmin()">&times;</span>
+<div id="adminLogin">
+<h3>🔐 এডমিন লগইন</h3>
+<div style="position:relative">
+<input id="adminPass" type="password" placeholder="পাসওয়ার্ড" style="padding-right:40px">
+<span onclick="togglePass('adminPass',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:20px">👁️</span>
+</div>
+<button class="btn-main" onclick="adminLogin()">লগইন</button>
+</div>
+<div id="adminPanel" style="display:none">
+<p>👥 কাস্টমার: <span id="totalCustomers">0</span> | 🛒 অর্ডার: <span id="totalOrders">0</span></p>
+<input id="pName" placeholder="পণ্যের নাম">
+<input id="pPrice" type="number" placeholder="দাম">
+<input id="pImg" placeholder="ছবি লিংক">
+<button class="btn-main" onclick="addProduct()">যোগ করুন</button>
+<hr>
+<div id="customerList"></div>
+<div id="orderList"></div>
+<div id="adminProductList"></div>
+</div>
+</div>
+</div>
 
-<!-- Cart Modal -->
-<div id="cartModal" class="modal"><div class="modal-content">
-  <span class="close" onclick="closeCart()">&times;</span>
-  <h3>🛒 আপনার কার্ট</h3>
-  <div id="cartItems"></div>
-  <h4>মোট: <span id="cartTotal">0</span> টাকা</h4>
-  <input id="cName" placeholder="আপনার নাম">
-  <input id="cPhone" placeholder="ফোন">
-  <input id="cAddress" placeholder="ঠিকানা">
-  <select id="cPay"><option>বিকাশ</option><option>নগদ</option><option>রকেট</option><option>ক্যাশ অন ডেলিভারি</option></select>
-  <button onclick="placeOrder()">✅ অর্ডার করুন</button>
-</div></div>
-
-<!-- Admin Modal -->
-<div id="adminModal" class="modal"><div class="modal-content admin">
-  <span class="close" onclick="closeAdmin()">&times;</span>
-  <div id="adminLogin">
-    <h3>⚙️ এডমিন লগইন</h3>
-    <input id="adminPass" type="password" placeholder="পাসওয়ার্ড">
-    <button onclick="adminLogin()">লগইন</button>
-  </div>
-  <div id="adminPanel" style="display:none">
-    <h3>📊 ড্যাশবোর্ড</h3>
-    <p>👥 কাস্টমার: <span id="totalCustomers">0</span> | 🛒 অর্ডার: <span id="totalOrders">0</span></p>
-    <h4>➕ পণ্য যোগ</h4>
-    <input id="pName" placeholder="পণ্যের নাম"><input id="pPrice" type="number" placeholder="দাম"><input id="pImg" placeholder="ছবি লিংক">
-    <button onclick="addProduct()">যোগ করুন</button>
-    <h4>👥 কাস্টমার লিস্ট</h4><div id="customerList"></div>
-    <h4>🛒 অর্ডার লিস্ট</h4><div id="orderList"></div>
-    <h4>📦 পণ্য লিস্ট</h4><div id="adminProductList"></div>
-  </div>
-</div></div>
-
-<footer>
-  <p>📞 01637554829 | ✉️ begumemali43@gmail.com | 👤 মো: বিদ্যুৎ শেখ</p>
-  <p>© ২০২৬ ক্রয় বিক্রয় ডটকম</p>
-</footer>
-
+<footer>© ক্রয় বিক্রয় ডটকম - বিদ্যুৎ শেখ</footer>
 <script src="script.js"></script>
 </body>
 </html>
