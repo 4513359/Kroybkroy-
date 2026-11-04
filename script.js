@@ -14,7 +14,6 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 let orders = JSON.parse(localStorage.getItem('orders')) || [];
 let currentCat = 'all';
 let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-
 function save(){
 localStorage.setItem('products',JSON.stringify(products));
 localStorage.setItem('cart',JSON.stringify(cart));
@@ -22,8 +21,6 @@ localStorage.setItem('users',JSON.stringify(users));
 localStorage.setItem('orders',JSON.stringify(orders));
 localStorage.setItem('currentUser',JSON.stringify(currentUser));
 }
-
-// ===== PRODUCTS =====
 function filterCat(cat){
 currentCat = cat;
 document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));
@@ -42,8 +39,6 @@ list.forEach(p=>{
 l.innerHTML += `<div><img src="${p.img}" onerror="this.src='https://via.placeholder.com/500?text=${encodeURIComponent(p.name)}'"><div class="cat">${p.cat||'পণ্য'}</div><h4>${p.name}</h4><p>${p.price} Tk ${p.oldPrice?`<span class="old">${p.oldPrice} Tk</span>`:''}</p><button onclick="addToCart(${p.id})">🛒 কার্টে যোগ করুন</button></div>`;
 });
 }
-
-// ===== CART =====
 function addToCart(id){
 const p = products.find(x=>x.id===id);
 cart.push(p); save();
@@ -83,8 +78,6 @@ save(); cart=[]; save();
 alert('✅ অর্ডার সফল হয়েছে!\nমোট: '+(sub+del)+' Tk\nআমরা কল দিবো: '+ph);
 closeCart(); document.getElementById('cartCount').innerText=0;
 }
-
-// ===== AUTH =====
 function openAuth(){
 document.getElementById('authModal').style.display='block';
 if(currentUser){
@@ -115,12 +108,10 @@ if(u){ currentUser=u; save(); document.getElementById('authMsg').innerText='✅ 
 else{ document.getElementById('authMsg').innerText='❌ ফোন বা পাসওয়ার্ড ভুল'; }
 }
 function logout(){ currentUser=null; save(); document.getElementById('authMsg').innerText='লগআউট হয়েছে'; document.getElementById('userInfo').innerText=''; document.getElementById('logoutBtn').style.display='none'; }
-
-// ===== ADMIN =====
 function openAdmin(){ document.getElementById('adminModal').style.display='block'; }
 function closeAdmin(){ document.getElementById('adminModal').style.display='none'; }
 function adminLogin(){
-if(document.getElementById('adminPass').value==='Bd#2026@Kroy!123'){
+if(document.getElementById('adminPass').value==='b13967890'){
 document.getElementById('adminLogin').style.display='none';
 document.getElementById('adminPanel').style.display='block';
 renderAdmin();
@@ -152,8 +143,6 @@ function delOrder(id){ if(confirm('অর্ডার ডিলিট করব�
 function doneOrder(id){ let o=orders.find(x=>x.id===id); if(o){o.status='ডেলিভারি সম্পন্ন'; save(); renderAdmin();} }
 function clearAllData(){ if(confirm('সব ডাটা মুছবেন?')){ localStorage.clear(); location.reload(); } }
 function togglePass(id,el){ const i=document.getElementById(id); if(i.type==='password'){i.type='text';el.innerText='🙈';}else{i.type='password';el.innerText='👁️';} }
-
-// ===== INIT =====
 renderProducts();
 document.getElementById('cartCount').innerText = cart.length;
 document.getElementById('cArea')?.addEventListener('change',renderCart);
