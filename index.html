@@ -19,70 +19,19 @@
 </div>
 </header>
 <div class="banner">
-<img src="banner.jpg" onerror="this.src='https://via.placeholder.com/1200x400?text=ক্রয়+বিক্রয়+ডটকম'">
+<img src="banner.jpg" onerror="this.src='https://via.placeholder.com/800x300?text=ক্রয়+বিক্রয়+ডটকম'">
 <h1>ক্রয় বিক্রয় ডটকম</h1>
 </div>
-<div class="search-box">
-<input id="searchInput" placeholder="🔍 পণ্য খুঁজুন..." oninput="renderProducts()">
-</div>
+<div class="search-box"><input id="searchInput" placeholder="🔍 পণ্য খুঁজুন..." oninput="renderProducts()"></div>
 <div id="productList"></div>
 
-<div id="authModal" class="modal">
-<div class="modal-box">
-<span class="close" onclick="closeAuth()">&times;</span>
-<h3>👤 একাউন্ট</h3>
-<input id="aName" placeholder="নাম">
-<input id="aPhone" placeholder="ফোন 01...">
-<div style="position:relative">
-<input id="aPass" type="password" placeholder="পাসওয়ার্ড" style="padding-right:40px">
-<span onclick="togglePass('aPass',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:20px">👁️</span>
-</div>
-<input id="aNID" placeholder="NID">
-<button class="btn-main" onclick="register()">রেজিস্টার</button>
-<button class="btn-main" onclick="login()">লগইন</button>
-<p id="authMsg"></p>
-</div>
-</div>
+<div id="authModal" class="modal"><div class="modal-box"><span class="close" onclick="closeAuth()">&times;</span><h3>👤 একাউন্ট</h3><input id="aName" placeholder="নাম"><input id="aPhone" placeholder="ফোন 01..."><div class="pass-wrap"><input id="aPass" type="password" placeholder="পাসওয়ার্ড"><span onclick="togglePass('aPass',this)">👁️</span></div><input id="aNID" placeholder="NID"><button class="btn-main" onclick="register()">রেজিস্টার</button><button class="btn-main" onclick="login()">লগইন</button><p id="authMsg"></p></div></div>
 
-<div id="cartModal" class="modal">
-<div class="modal-box">
-<span class="close" onclick="closeCart()">&times;</span>
-<h3>🛒 কার্ট</h3>
-<div id="cartItems"></div>
-<h4>মোট: <span id="cartTotal">0</span> Tk</h4>
-<input id="cName" placeholder="নাম">
-<input id="cPhone" placeholder="ফোন">
-<input id="cAddress" placeholder="ঠিকানা">
-<button class="btn-main" onclick="placeOrder()">✅ অর্ডার করুন</button>
-</div>
-</div>
+<div id="cartModal" class="modal"><div class="modal-box"><span class="close" onclick="closeCart()">&times;</span><h3>🛒 কার্ট</h3><div id="cartItems"></div><h4>মোট: <span id="cartTotal">0</span> Tk</h4><input id="cName" placeholder="নাম"><input id="cPhone" placeholder="ফোন"><input id="cAddress" placeholder="ঠিকানা"><button class="btn-main" onclick="placeOrder()">✅ অর্ডার করুন</button></div></div>
 
-<div id="adminModal" class="modal">
-<div class="modal-box admin-box">
-<span class="close" onclick="closeAdmin()">&times;</span>
-<div id="adminLogin">
-<h3>🔐 এডমিন লগইন</h3>
-<div style="position:relative">
-<input id="adminPass" type="password" placeholder="পাসওয়ার্ড" style="padding-right:40px">
-<span onclick="togglePass('adminPass',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:20px">👁️</span>
-</div>
-<button class="btn-main" onclick="adminLogin()">লগইন</button>
-</div>
-<div id="adminPanel" style="display:none">
-<p>👥 কাস্টমার: <span id="totalCustomers">0</span> | 🛒 অর্ডার: <span id="totalOrders">0</span></p>
-<input id="pName" placeholder="পণ্যের নাম">
-<input id="pPrice" type="number" placeholder="দাম">
-<input id="pImg" placeholder="ছবি লিংক">
-<button class="btn-main" onclick="addProduct()">যোগ করুন</button>
-<hr>
-<div id="customerList"></div>
-<div id="orderList"></div>
-<div id="adminProductList"></div>
-</div>
-</div>
-</div>
+<div id="adminModal" class="modal"><div class="modal-box admin-box"><span class="close" onclick="closeAdmin()">&times;</span><div id="adminLogin"><h3>🔐 এডমিন লগইন</h3><div class="pass-wrap"><input id="adminPass" type="password" placeholder="পাসওয়ার্ড"><span onclick="togglePass('adminPass',this)">👁️</span></div><button class="btn-main" onclick="adminLogin()">লগইন</button></div><div id="adminPanel" style="display:none"><p>👥 কাস্টমার: <span id="totalCustomers">0</span> | 🛒 অর্ডার: <span id="totalOrders">0</span></p><input id="pName" placeholder="পণ্যের নাম"><input id="pPrice" type="number" placeholder="দাম"><input id="pImg" placeholder="ছবি লিংক"><button class="btn-main" onclick="addProduct()">যোগ করুন</button><hr><div id="customerList"></div><div id="orderList"></div><div id="adminProductList"></div></div></div></div>
 
-<footer>© ক্রয় বিক্রয় ডটকম - বিদ্যুৎ শেখ</footer>
+<footer>© ক্রয় বিক্রয় ডটকম - বিদ্যুৎ শেখ | 01637554829</footer>
 <script src="script.js"></script>
 </body>
 </html>
