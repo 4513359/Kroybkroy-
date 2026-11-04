@@ -3,35 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ক্রয় বিক্রয় ডটকম</title>
+<title>ক্রয় বিক্রয় ডটকম - মেষ্টা, জামালপুর</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff8c00">
+<meta name="description" content="ক্রয় বিক্রয় ডটকম - মেষ্টা, হাজীপুর বাজার, জামালপুর">
+<link rel="icon" href="banner.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- HEADER -->
 <header>
 <div class="logo">🛒 ক্রয় বিক্রয় ডটকম</div>
-<div class="addr">📍 মেষ্টা, হাজীপুর বাজার, জামালপুর | 📞 01637554829</div>
+<div class="addr">📍 মেষ্টা, হাজীপুর বাজার, জামালপুর | 📞 01637554829 | 👤 বিদ্যুৎ শেখ</div>
 <div class="top-btns">
-<button onclick="openAuth()">👤 লগইন</button>
+<button onclick="openAuth()">👤 লগইন / রেজিস্টার</button>
 <button onclick="openCart()">🛒 কার্ট (<span id="cartCount">0</span>)</button>
 <button onclick="openAdmin()">⚙️ এডমিন</button>
 </div>
 </header>
+
+<!-- BANNER -->
 <div class="banner">
 <img src="banner.jpg" onerror="this.src='https://via.placeholder.com/800x300?text=ক্রয়+বিক্রয়+ডটকম'">
 <h1>ক্রয় বিক্রয় ডটকম</h1>
+<p class="banner-sub">সবকিছু এক জায়গায় - কম দামে ভালো পণ্য</p>
 </div>
-<div class="search-box"><input id="searchInput" placeholder="🔍 পণ্য খুঁজুন..." oninput="renderProducts()"></div>
+
+<!-- CATEGORY -->
+<div class="cats">
+<button onclick="filterCat('all')">সব</button>
+<button onclick="filterCat('লুঙ্গি')">লুঙ্গি</button>
+<button onclick="filterCat('পাঞ্জাবি')">পাঞ্জাবি</button>
+<button onclick="filterCat('শাড়ি')">শাড়ি</button>
+<button onclick="filterCat('গামছা')">গামছা</button>
+<button onclick="filterCat('টি-শার্ট')">টি-শার্ট</button>
+</div>
+
+<!-- SEARCH -->
+<div class="search-box">
+<input id="searchInput" placeholder="🔍 পণ্য খুঁজুন... যেমন লুঙ্গি, পাঞ্জাবি" oninput="renderProducts()">
+</div>
+
+<!-- PRODUCTS -->
+<h2 class="sec-title">🔥 আমাদের পণ্য</h2>
 <div id="productList"></div>
+<p id="noProduct" style="display:none;text-align:center;padding:20px;color:#aaa">কোনো পণ্য পাওয়া যায় নাই</p>
 
-<div id="authModal" class="modal"><div class="modal-box"><span class="close" onclick="closeAuth()">&times;</span><h3>👤 একাউন্ট</h3><input id="aName" placeholder="নাম"><input id="aPhone" placeholder="ফোন 01..."><div class="pass-wrap"><input id="aPass" type="password" placeholder="পাসওয়ার্ড"><span onclick="togglePass('aPass',this)">👁️</span></div><input id="aNID" placeholder="NID"><button class="btn-main" onclick="register()">রেজিস্টার</button><button class="btn-main" onclick="login()">লগইন</button><p id="authMsg"></p></div></div>
+<!-- WHY US -->
+<div class="why">
+<h3>❤️ কেন আমাদের থেকে কিনবেন?</h3>
+<p>✅ ক্যাশ অন ডেলিভারি &nbsp; ✅ দ্রুত ডেলিভারি &nbsp; ✅ কম দাম &nbsp; ✅ বিশ্বস্ত</p>
+</div>
 
-<div id="cartModal" class="modal"><div class="modal-box"><span class="close" onclick="closeCart()">&times;</span><h3>🛒 কার্ট</h3><div id="cartItems"></div><h4>মোট: <span id="cartTotal">0</span> Tk</h4><input id="cName" placeholder="নাম"><input id="cPhone" placeholder="ফোন"><input id="cAddress" placeholder="ঠিকানা"><button class="btn-main" onclick="placeOrder()">✅ অর্ডার করুন</button></div></div>
+<!-- AUTH MODAL -->
+<div id="authModal" class="modal">
+<div class="modal-box">
+<span class="close" onclick="closeAuth()">&times;</span>
+<h3>👤 একাউন্ট</h3>
+<p style="font-size:13px;color:#aaa;margin-bottom:10px">একাউন্ট খুলে অর্ডার করুন</p>
+<input id="aName" placeholder="আপনার নাম *">
+<input id="aPhone" placeholder="মোবাইল নাম্বার 01... *">
+<div class="pass-wrap"><input id="aPass" type="password" placeholder="পাসওয়ার্ড *"><span onclick="togglePass('aPass',this)">👁️</span></div>
+<input id="aNID" placeholder="NID নাম্বার (ঐচ্ছিক)">
+<input id="aAddress" placeholder="ঠিকানা - গ্রাম, বাজার">
+<button class="btn-main" onclick="register()">📝 রেজিস্টার করুন</button>
+<button class="btn-main btn-green" onclick="login()">🔓 লগইন করুন</button>
+<p id="authMsg"></p>
+<p id="userInfo" style="font-size:13px;color:#ff8c00"></p>
+<button class="btn-main btn-red" onclick="logout()" style="display:none" id="logoutBtn">লগআউট</button>
+</div>
+</div>
 
-<div id="adminModal" class="modal"><div class="modal-box admin-box"><span class="close" onclick="closeAdmin()">&times;</span><div id="adminLogin"><h3>🔐 এডমিন লগইন</h3><div class="pass-wrap"><input id="adminPass" type="password" placeholder="পাসওয়ার্ড"><span onclick="togglePass('adminPass',this)">👁️</span></div><button class="btn-main" onclick="adminLogin()">লগইন</button></div><div id="adminPanel" style="display:none"><p>👥 কাস্টমার: <span id="totalCustomers">0</span> | 🛒 অর্ডার: <span id="totalOrders">0</span></p><input id="pName" placeholder="পণ্যের নাম"><input id="pPrice" type="number" placeholder="দাম"><input id="pImg" placeholder="ছবি লিংক"><button class="btn-main" onclick="addProduct()">যোগ করুন</button><hr><div id="customerList"></div><div id="orderList"></div><div id="adminProductList"></div></div></div></div>
+<!-- CART MODAL -->
+<div id="cartModal" class="modal">
+<div class="modal-box">
+<span class="close" onclick="closeCart()">&times;</span>
+<h3>🛒 আপনার কার্ট</h3>
+<div id="cartItems"></div>
+<hr>
+<h4>ডেলিভারি চার্জ: <span id="deliveryCharge">0</span> Tk</h4>
+<h3>সর্বমোট: <span id="cartTotal">0</span> Tk</h3>
+<hr>
+<h4>📦 ডেলিভারি তথ্য</h4>
+<input id="cName" placeholder="আপনার নাম *">
+<input id="cPhone" placeholder="মোবাইল নাম্বার *">
+<input id="cAddress" placeholder="সম্পূর্ণ ঠিকানা - গ্রাম, বাজার, জেলা *">
+<select id="cArea">
+<option value="মেষ্টা">মেষ্টা - 30 Tk</option>
+<option value="জামালপুর সদর">জামালপুর সদর - 60 Tk</option>
+<option value="সারা বাংলাদেশ">সারা বাংলাদেশ - 120 Tk</option>
+</select>
+<button class="btn-main" onclick="placeOrder()">✅ অর্ডার কনফার্ম করুন</button>
+<p style="font-size:12px;color:#aaa;text-align:center;margin-top:8px">ক্যাশ অন ডেলিভারি - পণ্য হাতে পেয়ে টাকা দিবেন</p>
+</div>
+</div>
 
-<footer>© ক্রয় বিক্রয় ডটকম - বিদ্যুৎ শেখ | 01637554829</footer>
+<!-- ADMIN MODAL -->
+<div id="adminModal" class="modal">
+<div class="modal-box admin-box">
+<span class="close" onclick="closeAdmin()">&times;</span>
+<div id="adminLogin">
+<h3>🔐 এডমিন লগইন</h3>
+<p style="font-size:13px;color:#aaa">শুধুমাত্র মালিকের জন্য</p>
+<div class="pass-wrap"><input id="adminPass" type="password" placeholder="এডমিন পাসওয়ার্ড"><span onclick="togglePass('adminPass',this)">👁️</span></div>
+<button class="btn-main" onclick="adminLogin()">লগইন</button>
+</div>
+<div id="adminPanel" style="display:none">
+<h3>⚙️ এডমিন প্যানেল - বিদ্যুৎ শেখ</h3>
+<div class="stats">
+<div>👥 কাস্টমার<br><b id="totalCustomers">0</b></div>
+<div>🛒 অর্ডার<br><b id="totalOrders">0</b></div>
+<div>💰 মোট বিক্রি<br><b id="totalSale">0</b> Tk</div>
+<div>📦 পণ্য<br><b id="totalProducts">0</b></div>
+</div>
+<hr>
+<h4>➕ নতুন পণ্য যোগ করুন</h4>
+<input id="pName" placeholder="পণ্যের নাম - যেমন প্রিমিয়াম লুঙ্গি">
+<input id="pPrice" type="number" placeholder="দাম - যেমন 500">
+<input id="pOldPrice" type="number" placeholder="আগের দাম (ঐচ্ছিক) - যেমন 700">
+<input id="pImg" placeholder="ছবির লিংক - https://...">
+<input id="pCat" placeholder="ক্যাটাগরি - লুঙ্গি / পাঞ্জাবি / শাড়ি">
+<button class="btn-main" onclick="addProduct()">➕ পণ্য যোগ করুন</button>
+<hr>
+<h4>📦 সব পণ্য</h4>
+<div id="adminProductList"></div>
+<hr>
+<h4>👥 সব কাস্টমার</h4>
+<div id="customerList"></div>
+<hr>
+<h4>🛒 সব অর্ডার</h4>
+<div id="orderList"></div>
+<hr>
+<button class="btn-main btn-red" onclick="clearAllData()">🗑️ সব ডাটা মুছুন</button>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<b style="color:#ff8c00;font-size:15px">🛒 ক্রয় বিক্রয় ডটকম</b><br>
+📍 মেষ্টা, হাজীপুর বাজার, জামালপুর<br>
+📞 01637554829 | 👤 বিদ্যুৎ শেখ<br>
+© 2026 ক্রয় বিক্রয় ডটকম - সর্বস্বত্ব সংরক্ষিত
+</footer>
+
 <script src="script.js"></script>
 </body>
 </html>
