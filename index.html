@@ -2,37 +2,84 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ক্রয় বিক্রয় ডটকম</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ক্রয় বিক্রয় ডটকম - জামালপুর</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff8c00">
+<link rel="apple-touch-icon" href="banner.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="siteWrap">
-<div class="topBarWrap"><div class="topBarTrack" id="topTrack"><span>🇧🇩 01637554829 | begumemali43@gmail.com | ID:170792315 | </span><span>🇧🇩 01637554829 | begumemali43@gmail.com | ID:170792315 | </span></div></div>
 <header>
-<div class="left"><div class="logo">B</div><div class="txt" id="siteName">ক্রয় বিক্রয়<br>ডটকম</div></div>
-<div class="right">
-<button onclick="goHome()">হোম</button>
-<button onclick="goBuy()">কিনুন</button>
-<button onclick="goSell()">বিক্রি</button>
-<button id="customerAccountBtn" class="hidden" onclick="goAccount()" style="background:linear-gradient(#1877f2,#0f5bc2)">👤 <span id="custBtnName">একাউন্ট</span></button>
-<button id="accountBtn" onclick="goAccount()">একাউন্ট</button>
-<button onclick="goLogin()">লগইন</button>
-</div>
+  <div class="logo">🛒 ক্রয় বিক্রয় ডটকম</div>
+  <div class="loc">📍 মেষ্টা, হাজীপুর বাজার, জামালপুর</div>
+  <div class="top-btns">
+    <button onclick="openAuth()">👤 লগইন</button>
+    <button onclick="openCart()">🛒 কার্ট (<span id="cartCount">0</span>)</button>
+    <button onclick="openAdmin()">⚙️ এডমিন</button>
+  </div>
 </header>
-<div class="fixedWrap"><div class="bannerFixed"><img id="mainBanner" src="banner.jpg"></div><div class="catBar"><button class="active" onclick="loadCat(this,'offer')">🔥 অফার</button><button onclick="loadCat(this,'daraz')">দারাজ</button><button onclick="loadCat(this,'fashion')">ফ্যাশন</button><button onclick="loadCat(this,'mobile')">মোবাইল</button><button onclick="loadCat(this,'home')">হোম</button><button onclick="loadCat(this,'kids')">বাচ্চা</button><button onclick="loadCat(this,'shoe')">জুতা</button><button onclick="loadCat(this,'watch')">ঘড়ি</button><button onclick="loadCat(this,'bag')">ব্যাগ</button><button onclick="loadCat(this,'elect')">ইলেকট্রনিক্স</button></div></div>
-<div id="homeSec" class="box"><h3 id="catTitle">🔥 অফার - ১০ টা পণ্য</h3><div class="grid" id="productGrid"></div></div>
-<div id="buySec" class="sec hidden"><h3>🛒 কিনুন</h3><div class="grid" id="buyGrid"></div></div>
-<div id="sellSec" class="sec hidden"><h3>📦 পণ্য বিক্রি করুন</h3><div class="formBox"><div style="text-align:center"><img id="sellPreview" src="https://via.placeholder.com/200x150?text=পণ্যের+ছবি" style="width:200px;height:150px;object-fit:cover;border-radius:10px;border:2px solid #ff8c00"><br><input type="file" id="sellPhoto" accept="image/*" onchange="previewSell(this)" style="margin:8px 0;color:#fff"></div><input id="sName" placeholder="* পণ্যের নাম"><input id="sPrice" type="number" placeholder="* দাম"><select id="sCat"><option value="">* ক্যাটাগরি</option><option value="offer">🔥 অফার</option><option value="daraz">দারাজ</option><option value="fashion">ফ্যাশন</option><option value="mobile">মোবাইল</option><option value="home">হোম</option><option value="kids">বাচ্চা</option><option value="shoe">জুতা</option><option value="watch">ঘড়ি</option><option value="bag">ব্যাগ</option><option value="elect">ইলেকট্রনিক্স</option></select><select id="sCondition"><option value="">* অবস্থা</option><option value="নতুন">নতুন</option><option value="ব্যবহৃত">ব্যবহৃত</option></select><input id="sStock" type="number" placeholder="* পরিমাণ"><textarea id="sDesc" placeholder="* বিবরণ"></textarea><input id="sLocation" placeholder="* লোকেশন"><input id="sPhone" placeholder="* ফোন 01XXXXXXXXX"><button onclick="addProductFull()">✅ পাঠান</button></div></div>
-<div id="accountSec" class="sec hidden"><h3>👤 কাস্টমার একাউন্ট</h3><div id="noAccount" class="formBox"><h4 style="color:#fff;text-align:center">নতুন একাউন্ট</h4><div style="text-align:center"><img id="previewImg" src="https://via.placeholder.com/80?text=Photo" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #ff8c00"><br><input type="file" id="cPhoto" accept="image/*" onchange="previewPhoto(this)" style="margin:8px 0 0 0;color:#fff"></div><input id="cName" placeholder="* নাম (৩+ অক্ষর)"><input id="cPhone" placeholder="* মোবাইল 01XXXXXXXXX"><input id="cEmail" placeholder="* জিমেইল example@gmail.com"><input id="cNID" placeholder="* NID ১০-১৭ ডিজিট"><input id="cAddr" placeholder="* ঠিকানা"><input id="cPass" type="password" placeholder="* পাসওয়ার্ড ৬+ অক্ষর"><button onclick="createCustomer()">একাউন্ট তৈরি</button><p class="note">লগইন</p><input id="clPhone" placeholder="মোবাইল / NID / জিমেইল"><input id="clPass" type="password" placeholder="পাসওয়ার্ড"><button onclick="loginCustomer()" style="background:#2e8b57">🔐 লগইন</button></div><div id="hasAccount" class="hidden"><div class="profileCard"><img id="pPhoto" src="" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #ff8c00;margin:0 auto 10px;display:block"><h2 id="pName">নাম</h2><p id="pPhone">📞</p><p id="pEmail">✉️</p><p id="pNID" style="color:#ffb02e;font-weight:bold">🪪 NID:</p><p id="pAddr">📍</p><p id="pId">🆔</p><p id="pPassShow" style="color:#888">🔑 ****</p></div><div style="display:flex;gap:8px;max-width:400px;margin:10px auto;flex-wrap:wrap"><button onclick="editCustomer()" style="flex:1;background:#1877f2;padding:10px;border:0;border-radius:8px;color:#fff">✏️ এডিট</button><button onclick="changePhoto()" style="flex:1;background:#ff8c00;padding:10px;border:0;border-radius:8px;color:#fff">🖼️ ছবি</button><button onclick="showPassword()" style="flex:1;background:#2e8b57;padding:10px;border:0;border-radius:8px;color:#fff">👁️ পাস</button><button onclick="logoutCustomer()" style="flex:1;background:#d93025;padding:10px;border:0;border-radius:8px;color:#fff">🚪 লগআউট</button></div><div id="myOrders" class="orderList"></div></div></div>
-<div id="loginSec" class="sec hidden"><h3>🔐 এডমিন লগইন</h3><div class="formBox"><input id="lPass" type="password" placeholder="পাসওয়ার্ড"><button onclick="doLogin()">লগইন</button><p class="note">b13967890</p></div></div>
-<div class="paymentSection"><h3>💳 পেমেন্ট</h3><div class="payGrid"><div class="payCard"><div class="payIcon bkash">bKash</div><p>বিকাশ</p><span id="payBkash">01637554829</span></div><div class="payCard"><div class="payIcon nagad">Nagad</div><p>নগদ</p><span id="payNagad">01637554829</span></div><div class="payCard"><div class="payIcon rocket">Rocket</div><p>রকেট</p><span id="payRocket">01637554829</span></div><div class="payCard"><div class="payIcon cod">COD</div><p>COD</p><span>সারা বাংলাদেশ</span></div></div></div>
-<div class="bottomGrid"><div class="contactSection"><h3>📞 যোগাযোগ</h3><div class="socialGrid"><a href="tel:01637554829" id="contactPhone" class="socialBtn"><span>📞</span><div><p>মোবাইল</p><b id="contactPhoneText">01637554829</b></div></a><a href="mailto:begumemali43@gmail.com" id="contactEmail" class="socialBtn"><span>✉️</span><div><p>জিমেইল</p><b id="contactEmailText">begumemali43@gmail.com</b></div></a><a href="https://www.facebook.com/share/1QLMRz81yZ/" target="_blank" id="contactFb" class="socialBtn"><span>📘</span><div><p>ফেসবুক</p><b>প্রোফাইল</b></div></a><a href="https://wa.me/8801637554829" target="_blank" id="contactWa" class="socialBtn"><span>💬</span><div><p>হোয়াটসঅ্যাপ</p><b id="contactWaText">01637554829</b></div></a></div></div><div class="addressSection"><h3>📍 ঠিকানা</h3><div class="addressBox"><div class="addrIcon">🏪</div><div class="addrInfo"><h4>ক্রয় বিক্রয় ডটকম</h4><p>👤 পো: <b>মো: বিদ্যুৎ শেখ</b></p><p>📍 মেষ্টা, হাজীপুর বাজার</p><p>জামালপুর সদর, জামালপুর</p><p>ময়মনসিংহ বিভাগ</p><p>📞 01637554829</p><p>✉️ begumemali43@gmail.com</p><p>🆔 170792315</p><div class="addrBtns"><a href="https://maps.google.com/?q=Mesta+Hajipur+Bazar+Jamalpur" target="_blank" class="mapBtn">🗺️ ম্যাপ</a><a href="tel:01637554829" class="callBtn">📞 কল</a></div></div></div></div></div>
-<footer class="footer"><div class="footerBox"><h4 id="footerName">ক্রয় বিক্রয় ডটকম</h4><p>পো: মো: বিদ্যুৎ শেখ | মেষ্টা, হাজীপুর বাজার, জামালপুর | ময়মনসিংহ</p><p>📞 01637554829 | ✉️ begumemali43@gmail.com</p></div></footer>
+
+<div class="banner"><img src="banner.jpg" onerror="this.src='https://i.imgur.com/Qk0p2bO.jpg'"></div>
+
+<div class="search-box">
+  <input id="searchInput" placeholder="পণ্য খুঁজুন..." oninput="renderProducts()">
 </div>
-<div id="chatBtn" onclick="toggleChat()"><div class="chatBtnPulse"></div><div class="chatBtnIcon">💬</div><div class="chatBtnText">চ্যাট</div><span id="chatBadge" class="hidden">0</span></div>
-<div id="chatBox" class="hidden"><div class="chatHeader"><div><h4>💬 লাইভ সাপোর্ট</h4><p>অনলাইনে আছি ✓</p></div><button onclick="closeChat()" id="closeChatBtn" type="button">✕</button></div><div id="chatMessages" class="chatMessages"></div><div class="quickReply"><button onclick="quickChat('দাম কত?')">💰 দাম?</button><button onclick="quickChat('ডেলিভারি?')">🚚 ডেলিভারি</button><button onclick="quickChat('স্টক আছে?')">📦 স্টক?</button></div><div class="chatInput"><input id="chatInput" placeholder="মেসেজ লিখুন..." onkeypress="if(event.key==='Enter') sendChat()"><button onclick="sendChat()">🚀</button></div></div>
-<div id="adminFullPage" class="hidden"><div class="adminFullHeader"><h2>👑 এডমিন</h2><button onclick="adminLogout()" class="adminLogoutBtn">❌ বের হন</button></div><div class="adminTabs"><button class="active" onclick="adminTab(this,'dash')">📊 ড্যাশ</button><button onclick="adminTab(this,'pending')" style="background:#ff8c00;color:#000">⏳ পেন্ডিং <span id="pendingBadge"></span></button><button onclick="adminTab(this,'prod')">📦 পণ্য</button><button onclick="adminTab(this,'order')">🛒 অর্ডার</button><button onclick="adminTab(this,'cust')">👥 কাস্টমার</button><button onclick="adminTab(this,'chat')" style="background:#25D366;color:#000">💬 চ্যাট <span id="adminChatBadge"></span></button><button onclick="adminTab(this,'add')">➕ যোগ</button><button onclick="adminTab(this,'settings')" style="background:#1877f2;color:#fff">⚙️ সেটিংস</button></div><div id="adminDash" class="adminSec"><div class="dashGrid"><div class="dashCard"><h2 id="dProd">0</h2><p>মোট পণ্য</p></div><div class="dashCard"><h2 id="dOrder">0</h2><p>মোট অর্ডার</p></div><div class="dashCard"><h2 id="dCust">0</h2><p>মোট কাস্টমার</p></div><div class="dashCard"><h2 id="dPending">0</h2><p>পেন্ডিং</p></div></div><div class="infoBox"><p>📞 <span id="sPhoneShow">01637554829</span> | ✉️ <span id="sEmailShow">begumemali43@gmail.com</span></p></div><div id="gmailLogBox" style="background:#111;border:1px solid #333;border-radius:8px;padding:10px;margin-top:10px"><h5 style="color:#ffb02e">📧 জিমেইল লগ - Web3Forms</h5><div id="gmailLogList" style="font-size:10px;color:#ccc;max-height:120px;overflow-y:auto"></div></div></div><div id="adminPending" class="adminSec hidden"><h4>⏳ পেন্ডিং পণ্য</h4><div id="adminPendingList"></div></div><div id="adminProd" class="adminSec hidden"><h4>📦 সকল পণ্য</h4><div id="adminProdList"></div></div><div id="adminOrder" class="adminSec hidden"><h4>🛒 সকল অর্ডার</h4><div id="adminOrderList"></div></div><div id="adminCust" class="adminSec hidden"><h4>👥 সকল কাস্টমার - ছবি সহ</h4><div id="adminCustList"></div></div><div id="adminChat" class="adminSec hidden"><h4>💬 লাইভ চ্যাট</h4><div id="adminChatMessages" class="chatMessages" style="height:350px"></div><div class="chatInput"><input id="adminChatInput" placeholder="রিপ্লাই লিখুন..." onkeypress="if(event.key==='Enter') adminSendChat()"><button onclick="adminSendChat()">🚀</button></div></div><div id="adminAdd" class="adminSec hidden"><h4>➕ পণ্য যোগ</h4><div class="formBox"><div style="text-align:center"><img id="adminPreview" src="https://via.placeholder.com/200x150?text=Admin" style="width:200px;height:150px;object-fit:cover;border-radius:10px;border:2px solid #0f0"><br><input type="file" id="adminPhoto" accept="image/*" onchange="previewAdmin(this)" style="margin:8px 0;color:#fff"></div><input id="aName" placeholder="* পণ্যের নাম"><input id="aPrice" type="number" placeholder="* দাম"><select id="aCat"><option value="offer">🔥 অফার</option><option value="daraz">দারাজ</option><option value="fashion">ফ্যাশন</option><option value="mobile">মোবাইল</option><option value="home">হোম</option><option value="kids">বাচ্চা</option><option value="shoe">জুতা</option><option value="watch">ঘড়ি</option><option value="bag">ব্যাগ</option><option value="elect">ইলেকট্রনিক্স</option></select><textarea id="aDesc" placeholder="বিবরণ"></textarea><button onclick="adminAddProduct()" style="background:#0f0;color:#000">✅ যোগ করুন</button></div></div><div id="adminSettings" class="adminSec hidden"><h4>⚙️ সেটিংস</h4><div class="formBox" style="max-width:500px"><input id="setSiteName" placeholder="দোকানের নাম"><input id="setPhone" placeholder="মোবাইল"><input id="setEmail" placeholder="জিমেইল"><input id="setId" placeholder="ID"><input id="setFb" placeholder="ফেসবুক"><input id="setWa" placeholder="হোয়াটসঅ্যাপ"><input id="setBkash" placeholder="বিকাশ"><input id="setNagad" placeholder="নগদ"><input id="setRocket" placeholder="রকেট"><input id="setPass" type="text" placeholder="পাসওয়ার্ড"><div style="text-align:center"><img id="setBannerPreview" src="banner.jpg" style="width:200px;height:100px;object-fit:cover;border-radius:8px;border:2px solid #ff8c00"><br><input type="file" id="setBanner" accept="image/*" onchange="previewSetBanner(this)" style="margin:8px 0;color:#fff"></div><button onclick="saveSettings()" style="background:#ff8c00">💾 সেভ</button><button onclick="resetSettings()" style="background:#d93025;margin-top:8px">🔄 ডিফল্ট</button></div></div></div>
+
+<div id="productList" class="products"></div>
+
+<!-- Auth Modal -->
+<div id="authModal" class="modal"><div class="modal-content">
+  <span class="close" onclick="closeAuth()">&times;</span>
+  <h3>👤 একাউন্ট</h3>
+  <input id="aName" placeholder="নাম">
+  <input id="aPhone" placeholder="ফোন 01...">
+  <input id="aPass" type="password" placeholder="পাসওয়ার্ড">
+  <input id="aNID" placeholder="NID (ঐচ্ছিক)">
+  <input id="aPhoto" type="file" accept="image/*">
+  <button onclick="register()">রেজিস্টার</button>
+  <button onclick="login()">লগইন</button>
+  <p id="authMsg"></p>
+</div></div>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="modal"><div class="modal-content">
+  <span class="close" onclick="closeCart()">&times;</span>
+  <h3>🛒 আপনার কার্ট</h3>
+  <div id="cartItems"></div>
+  <h4>মোট: <span id="cartTotal">0</span> টাকা</h4>
+  <input id="cName" placeholder="আপনার নাম">
+  <input id="cPhone" placeholder="ফোন">
+  <input id="cAddress" placeholder="ঠিকানা">
+  <select id="cPay"><option>বিকাশ</option><option>নগদ</option><option>রকেট</option><option>ক্যাশ অন ডেলিভারি</option></select>
+  <button onclick="placeOrder()">✅ অর্ডার করুন</button>
+</div></div>
+
+<!-- Admin Modal -->
+<div id="adminModal" class="modal"><div class="modal-content admin">
+  <span class="close" onclick="closeAdmin()">&times;</span>
+  <div id="adminLogin">
+    <h3>⚙️ এডমিন লগইন</h3>
+    <input id="adminPass" type="password" placeholder="পাসওয়ার্ড">
+    <button onclick="adminLogin()">লগইন</button>
+  </div>
+  <div id="adminPanel" style="display:none">
+    <h3>📊 ড্যাশবোর্ড</h3>
+    <p>👥 কাস্টমার: <span id="totalCustomers">0</span> | 🛒 অর্ডার: <span id="totalOrders">0</span></p>
+    <h4>➕ পণ্য যোগ</h4>
+    <input id="pName" placeholder="পণ্যের নাম"><input id="pPrice" type="number" placeholder="দাম"><input id="pImg" placeholder="ছবি লিংক">
+    <button onclick="addProduct()">যোগ করুন</button>
+    <h4>👥 কাস্টমার লিস্ট</h4><div id="customerList"></div>
+    <h4>🛒 অর্ডার লিস্ট</h4><div id="orderList"></div>
+    <h4>📦 পণ্য লিস্ট</h4><div id="adminProductList"></div>
+  </div>
+</div></div>
+
+<footer>
+  <p>📞 01637554829 | ✉️ begumemali43@gmail.com | 👤 মো: বিদ্যুৎ শেখ</p>
+  <p>© ২০২৬ ক্রয় বিক্রয় ডটকম</p>
+</footer>
+
 <script src="script.js"></script>
 </body>
 </html>
