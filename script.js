@@ -1,4 +1,3 @@
-// ===== DATA =====
 let products = JSON.parse(localStorage.getItem('products')) || [
 {id:1,name:"প্রিমিয়াম লুঙ্গি",price:500,oldPrice:700,cat:"লুঙ্গি",img:"https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500"},
 {id:2,name:"সুতি গামছা - বড় সাইজ",price:150,oldPrice:200,cat:"গামছা",img:"https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500"},
