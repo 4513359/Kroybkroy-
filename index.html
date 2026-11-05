@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- HEADER -->
 <header>
 <div class="logo">🛒 ক্রয় বিক্রয় ডটকম</div>
 <div class="addr">📍 মেষ্টা, হাজীপুর বাজার, জামালপুর | 📞 01637554829 | 👤 বিদ্যুৎ শেখ</div>
@@ -22,41 +20,29 @@
 <button onclick="openAdmin()">⚙️ এডমিন</button>
 </div>
 </header>
-
-<!-- BANNER -->
 <div class="banner">
 <img src="banner.jpg" onerror="this.src='https://via.placeholder.com/800x300?text=ক্রয়+বিক্রয়+ডটকম'">
 <h1>ক্রয় বিক্রয় ডটকম</h1>
 <p class="banner-sub">সবকিছু এক জায়গায় - কম দামে ভালো পণ্য</p>
 </div>
-
-<!-- CATEGORY -->
 <div class="cats">
-<button onclick="filterCat('all')">সব</button>
+<button onclick="filterCat('all')" class="active">সব</button>
 <button onclick="filterCat('লুঙ্গি')">লুঙ্গি</button>
 <button onclick="filterCat('পাঞ্জাবি')">পাঞ্জাবি</button>
 <button onclick="filterCat('শাড়ি')">শাড়ি</button>
 <button onclick="filterCat('গামছা')">গামছা</button>
 <button onclick="filterCat('টি-শার্ট')">টি-শার্ট</button>
 </div>
-
-<!-- SEARCH -->
 <div class="search-box">
 <input id="searchInput" placeholder="🔍 পণ্য খুঁজুন... যেমন লুঙ্গি, পাঞ্জাবি" oninput="renderProducts()">
 </div>
-
-<!-- PRODUCTS -->
 <h2 class="sec-title">🔥 আমাদের পণ্য</h2>
 <div id="productList"></div>
 <p id="noProduct" style="display:none;text-align:center;padding:20px;color:#aaa">কোনো পণ্য পাওয়া যায় নাই</p>
-
-<!-- WHY US -->
 <div class="why">
 <h3>❤️ কেন আমাদের থেকে কিনবেন?</h3>
 <p>✅ ক্যাশ অন ডেলিভারি &nbsp; ✅ দ্রুত ডেলিভারি &nbsp; ✅ কম দাম &nbsp; ✅ বিশ্বস্ত</p>
 </div>
-
-<!-- AUTH MODAL -->
 <div id="authModal" class="modal">
 <div class="modal-box">
 <span class="close" onclick="closeAuth()">&times;</span>
@@ -74,8 +60,6 @@
 <button class="btn-main btn-red" onclick="logout()" style="display:none" id="logoutBtn">লগআউট</button>
 </div>
 </div>
-
-<!-- CART MODAL -->
 <div id="cartModal" class="modal">
 <div class="modal-box">
 <span class="close" onclick="closeCart()">&times;</span>
@@ -98,8 +82,6 @@
 <p style="font-size:12px;color:#aaa;text-align:center;margin-top:8px">ক্যাশ অন ডেলিভারি - পণ্য হাতে পেয়ে টাকা দিবেন</p>
 </div>
 </div>
-
-<!-- ADMIN MODAL -->
 <div id="adminModal" class="modal">
 <div class="modal-box admin-box">
 <span class="close" onclick="closeAdmin()">&times;</span>
@@ -139,15 +121,12 @@
 </div>
 </div>
 </div>
-
-<!-- FOOTER -->
 <footer>
 <b style="color:#ff8c00;font-size:15px">🛒 ক্রয় বিক্রয় ডটকম</b><br>
 📍 মেষ্টা, হাজীপুর বাজার, জামালপুর<br>
 📞 01637554829 | 👤 বিদ্যুৎ শেখ<br>
 © 2026 ক্রয় বিক্রয় ডটকম - সর্বস্বত্ব সংরক্ষিত
 </footer>
-
 <script src="script.js"></script>
 </body>
 </html>
