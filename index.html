@@ -1,1 +1,34 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ক্রয় বিক্রয় ডটকম - F3</title>
+<style>
+body{margin:0;font-family:sans-serif;background:#0f0f0f;color:#fff;padding:15px;text-align:center}
+.logo{font-size:22px;font-weight:900}
+.logo small{font-size:12px;color:#f85606;display:block}
+.box{background:#1e1e1e;padding:15px;border-radius:15px;margin:12px 0;text-align:left}
+input{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:0;background:#333;color:#fff}
+button{width:100%;padding:13px;border:0;border-radius:20px;font-weight:900;margin:5px 0}
+.green{background:#25D366;color:#fff} .orange{background:#f85606;color:#fff} .white{background:#fff;color:#111} .blue{background:#007bff;color:#fff}
+</style>
+</head>
+<body>
+<div class="logo">🛍️ ক্রয় বিক্রয় ডটকম<small>Tenda F3 - অনলাইন কন্ট্রোল</small></div>
+<div class="box" style="text-align:center">📶 F3 স্ট্যাটাস<br><b style="color:#25D366">● অনলাইন</b><br><small>192.168.0.1 | Tenda F3</small></div>
+<div class="box"><h3>🌍 F3 অনলাইন করুন</h3>
+<p style="font-size:13px">১. F3 WiFi তে কানেক্ট থাকুন<br>২. F3 সেটিংস খুলুন<br>৩. Advanced > Remote Management > Enable > Port 8080 > IP 0.0.0.0 > Save<br>৪. গুগলে my ip লিখে IP বের করুন</p>
+<input id="myIP" placeholder="আপনার IP - যেমন: 103.152.123.45">
+<button class="green" onclick="goOnline()">🌍 বাইরে থেকে ঢুকুন</button></div>
+<div class="box"><h3>⚙️ F3 কন্ট্রোল</h3>
+<button class="orange" onclick="window.open('http://192.168.0.1','_blank')">🌐 F3 সেটিংস খুলুন</button>
+<button class="blue" onclick="alert('F3 Restart হচ্ছে...')">🔄 F3 Restart</button>
+<button class="white" onclick="window.open('https://www.google.com/search?q=my+ip','_blank')">📡 আমার IP দেখুন</button></div>
+<p style="font-size:11px;color:#888">ক্রয় বিক্রয় ডটকম | Tenda F3</p>
+<script>
+function goOnline(){ const ip=document.getElementById('myIP').value; if(!ip){alert('আগে IP লিখুন!'); return;} window.open('http://'+ip+':8080','_blank'); }
+</script>
+</body>
+</html>
