@@ -26,18 +26,59 @@ sports:Array.from({length:6},(_,i)=>({name:`স্পোর্টস ${i+1}`,pri
 toy:Array.from({length:6},(_,i)=>({name:`খেলনা ${i+1}`,price:300+i*30,img:"https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=400",platform:"both"}))
 };
 let customer=JSON.parse(localStorage.getItem('customer')||'null');let orders=JSON.parse(localStorage.getItem('orders')||'[]');let allCustomers=JSON.parse(localStorage.getItem('allCustomers')||'[]');let chats=JSON.parse(localStorage.getItem('chats')||'[]');let pendingProducts=JSON.parse(localStorage.getItem('pendingProducts')||'[]');let settings=JSON.parse(localStorage.getItem('siteSettings')||'null')||{siteName:"ক্রয় বিক্রয় ডটকম",phone:"01637554829",email:"begumemali43@gmail.com",id:"170792315",fb:"https://www.facebook.com/share/1QLMRz81yZ/",wa:"8801637554829",bkash:"01637554829",nagad:"01637554829",rocket:"01637554829",pass:"b13967890",banner:"banner.jpg",darazId:"170792315",aliId:"bd1255724598ozuae"};let tempPhoto='',tempSellPhoto='',tempAdminPhoto='',tempSetBanner='';
+let autoReplyDone = localStorage.getItem('autoReplyDone') === '1';
 function previewPhoto(i){const f=i.files[0];if(f){const r=new FileReader();r.onload=e=>{tempPhoto=e.target.result;document.getElementById('previewImg').src=tempPhoto;};r.readAsDataURL(f);}}
 function previewSell(i){const f=i.files[0];if(f){const r=new FileReader();r.onload=e=>{tempSellPhoto=e.target.result;document.getElementById('sellPreview').src=tempSellPhoto;};r.readAsDataURL(f);}}
 function previewAdmin(i){const f=i.files[0];if(f){const r=new FileReader();r.onload=e=>{tempAdminPhoto=e.target.result;document.getElementById('adminPreview').src=tempAdminPhoto;};r.readAsDataURL(f);}}
 function previewSetBanner(i){const f=i.files[0];if(f){const r=new FileReader();r.onload=e=>{tempSetBanner=e.target.result;document.getElementById('setBannerPreview').src=tempSetBanner;};r.readAsDataURL(f);}}
 function applySettings(){if(settings.darazId) DARAZ_AFF_ID=settings.darazId; if(settings.aliId) ALI_AFF_ID=settings.aliId; const fn=document.getElementById('footerName');if(fn) fn.innerText=settings.siteName;document.getElementById('topTrack').innerHTML=`<span>🇧🇩 ${settings.phone} | ${settings.email} | ID:${settings.id} | </span><span>🇧🇩 ${settings.phone} | ${settings.email} | ID:${settings.id} | </span>`;document.getElementById('payBkash').innerText=settings.bkash;document.getElementById('payNagad').innerText=settings.nagad;document.getElementById('payRocket').innerText=settings.rocket;document.getElementById('contactPhone').href=`tel:${settings.phone}`;document.getElementById('contactPhoneText').innerText=settings.phone;document.getElementById('contactEmail').href=`mailto:${settings.email}`;document.getElementById('contactEmailText').innerText=settings.email;document.getElementById('contactFb').href=settings.fb;document.getElementById('contactWa').href=`https://wa.me/${settings.wa}`;document.getElementById('contactWaText').innerText=settings.phone;const waMain=document.getElementById('waMainBtn'); if(waMain) waMain.href=`https://wa.me/${settings.wa}`;document.getElementById('mainBanner').src=settings.banner;document.getElementById('sPhoneShow').innerText=settings.phone;document.getElementById('sEmailShow').innerText=settings.email;const b1=document.getElementById('sBkashShow'); if(b1) b1.innerText=settings.bkash;const b2=document.getElementById('sNagadShow'); if(b2) b2.innerText=settings.nagad;const b3=document.getElementById('sWaShow'); if(b3) b3.innerText=settings.phone;}
 function saveSettings(){settings.siteName=document.getElementById('setSiteName').value||settings.siteName;settings.phone=document.getElementById('setPhone').value||settings.phone;settings.email=document.getElementById('setEmail').value||settings.email;settings.id=document.getElementById('setId').value||settings.id;settings.fb=document.getElementById('setFb').value||settings.fb;settings.wa=document.getElementById('setWa').value||settings.wa;settings.bkash=document.getElementById('setBkash').value||settings.bkash;settings.nagad=document.getElementById('setNagad').value||settings.nagad;settings.rocket=document.getElementById('setRocket').value||settings.rocket;settings.darazId=document.getElementById('setDarazId').value||settings.darazId;settings.aliId=document.getElementById('setAliId').value||settings.aliId;settings.pass=document.getElementById('setPass').value||settings.pass;if(tempSetBanner) settings.banner=tempSetBanner;localStorage.setItem('siteSettings',JSON.stringify(settings));applySettings();alert('✅ সেভ হয়েছে!');}
-function getAutoReply(msg){msg=msg.toLowerCase();if(msg.includes('দাম')) return `💰 দাম জানতে পণ্যের নাম বলুন! 🔥 📞 ${settings.phone}`;if(msg.includes('ডেলিভারি')) return `🚚 সারা বাংলাদেশ ডেলিভারি! 📞 ${settings.phone}`;if(msg.includes('বিকাশ')||msg.includes('নগদ')) return `💳 বিকাশ: ${settings.bkash} | নগদ: ${settings.nagad} | 💬 হোয়াটসঅ্যাপ: ${settings.phone}`;return `✅ মেসেজ পেয়েছি! এডমিন রিপ্লাই দেবে 🙏 📞 ${settings.phone}`;}
+function getAutoReply(msg){msg=msg.toLowerCase();if(msg.includes('দাম')) return `💰 দাম জানতে পণ্যের নাম বলুন! 🔥 📞 ${settings.phone}`;if(msg.includes('ডেলিভারি')) return `🚚 সারা বাংলাদেশ ডেলিভারি! 📞 ${settings.phone}`;if(msg.includes('বিকাশ')||msg.includes('নগদ')) return `💳 বিকাশ: ${settings.bkash} | নগদ: ${settings.nagad} | 💬 হোয়াটসঅ্যাপ: ${settings.phone}`;return `✅ মেসেজ পেয়েছি! এডমিন একটু পরেই রিপ্লাই দিবে 🙏 📞 ${settings.phone}`;}
 function quickChat(t){document.getElementById('chatInput').value=t;sendChat();}
 function closeChat(){document.getElementById('chatBox').classList.add('hidden');}
 function toggleChat(){const box=document.getElementById('chatBox');if(box.classList.contains('hidden')){box.classList.remove('hidden');box.style.display='flex';if(chats.length===0){chats.push({from:'admin',name:'এডমিন',text:`👋 আসসালামু আলাইকুম! ক্রয় বিক্রয় ডটকমে স্বাগতম! 📞 ${settings.phone} | 💳 বিকাশ: ${settings.bkash}`,time:new Date().toLocaleTimeString(),date:Date.now()});localStorage.setItem('chats',JSON.stringify(chats));}renderChat();}else closeChat();}
-function sendChat(){const input=document.getElementById('chatInput');const msg=input.value.trim();if(!msg) return;const name=customer?customer.name:'কাস্টমার';chats.push({from:'customer',name:name,text:msg,time:new Date().toLocaleTimeString(),date:Date.now()});localStorage.setItem('chats',JSON.stringify(chats));input.value='';renderChat();updateAdminChat();setTimeout(()=>{chats.push({from:'admin',name:'এডমিন (Auto)',text:getAutoReply(msg),time:new Date().toLocaleTimeString(),date:Date.now()});localStorage.setItem('chats',JSON.stringify(chats));renderChat();updateAdminChat();},1000);}
-function adminSendChat(){const input=document.getElementById('adminChatInput');const msg=input.value.trim();if(!msg) return;chats.push({from:'admin',name:'এডমিন',text:msg,time:new Date().toLocaleTimeString(),date:Date.now()});localStorage.setItem('chats',JSON.stringify(chats));input.value='';renderChat();updateAdminChat();}
+function sendChat(){
+  const input=document.getElementById('chatInput');
+  const msg=input.value.trim();
+  if(!msg) return;
+  const name=customer?customer.name:'কাস্টমার';
+  chats.push({from:'customer',name:name,text:msg,time:new Date().toLocaleTimeString(),date:Date.now()});
+  localStorage.setItem('chats',JSON.stringify(chats));
+  input.value='';
+  renderChat();
+  updateAdminChat();
+  if(!autoReplyDone){
+    autoReplyDone=true;
+    localStorage.setItem('autoReplyDone','1');
+    setTimeout(()=>{
+      chats.push({from:'admin',name:'এডমিন (Auto)',text:getAutoReply(msg),time:new Date().toLocaleTimeString(),date:Date.now()});
+      localStorage.setItem('chats',JSON.stringify(chats));
+      renderChat();
+      updateAdminChat();
+    },1000);
+  }
+}
+function adminSendChat(){
+  const input=document.getElementById('adminChatInput');
+  const msg=input.value.trim();
+  if(!msg) return;
+  chats.push({from:'admin',name:'এডমিন',text:msg,time:new Date().toLocaleTimeString(),date:Date.now()});
+  localStorage.setItem('chats',JSON.stringify(chats));
+  input.value='';
+  renderChat();
+  updateAdminChat();
+}
+function clearChatForNewCustomer(){
+  if(confirm('নতুন কাস্টমারের জন্য চ্যাট ক্লিয়ার করবেন? অটো রিপ্লাই আবার চালু হবে।')){
+    chats=[];
+    localStorage.setItem('chats',JSON.stringify(chats));
+    autoReplyDone=false;
+    localStorage.removeItem('autoReplyDone');
+    renderChat();
+    updateAdminChat();
+    alert('✅ চ্যাট ক্লিয়ার! এখন আবার ১ বার অটো রিপ্লাই দিবে।');
+  }
+}
 function renderChat(){const div=document.getElementById('chatMessages');if(!div) return;div.innerHTML='';chats.forEach(c=>{const cls=c.from=='customer'?'customer':'admin';div.innerHTML+=`<div class="chatMsg ${cls}">${c.text}<small>${c.name} - ${c.time}</small></div>`;});div.scrollTop=div.scrollHeight;}
 function updateAdminChat(){const div=document.getElementById('adminChatMessages');if(!div) return;div.innerHTML='';chats.forEach(c=>{const cls=c.from=='customer'?'customer':'admin';div.innerHTML+=`<div class="chatMsg ${cls}">${c.text}<small>${c.name} - ${c.time}</small></div>`;});div.scrollTop=div.scrollHeight;const b=document.getElementById('adminChatBadge');if(b) b.innerText=chats.length?`(${chats.length})`:'';}
 function makeCard(p){return `<div class="card" onclick="buyNow('${p.name}',${p.price})" style="cursor:pointer"><img src="${p.img}"><p>${p.name}</p><div style="background:#ff5a00;color:#fff;font-weight:900;font-size:15px;padding:7px 5px;margin:5px 8px;border-radius:8px">৳${p.price} &nbsp; | &nbsp; 🛒 কিনুন</div></div>`;}
