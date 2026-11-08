@@ -1,27 +1,32 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:Arial}
-.topBarWrap{background:#0a0a0a;overflow:hidden;white-space:nowrap;position:sticky;top:0;z-index:200}
-.topBarTrack{display:inline-block;animation:run 25s linear infinite;color:#ffb02e;font-size:11px;padding:6px 0}
+.topBarWrap{background:linear-gradient(90deg,#0a7a42,#0f9d58,#0a7a42) !important;overflow:hidden;white-space:nowrap;position:sticky;top:0;z-index:200;padding:2px 0}
+.topBarTrack{display:inline-block;animation:run 25s linear infinite;color:#fff !important;font-size:12px !important;font-weight:700 !important;text-shadow:1px 1px 2px #000;padding:6px 0}
 .topBarTrack span{padding-right:50px}
 @keyframes run{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 header{display:flex;justify-content:space-between;align-items:center;padding:8px;background:#000;position:sticky;top:21px;z-index:199;border-bottom:1px solid #222}
 .left{display:flex;align-items:center;gap:6px}
-.logoB{height:65px;width:65px;object-fit:cover;border-radius:50%;cursor:pointer}
+.logoB{height:65px;width:65px;object-fit:cover;border-radius:50%;cursor:pointer;background:#fff;border:2px solid #ff8c00;display:block}
 .logoText{display:flex;flex-direction:column;line-height:1.1}
 .logoBiddut{font-size:22px;font-weight:900;background:linear-gradient(90deg,#2ecc71,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .logoBn{font-size:13px;font-weight:700;background:linear-gradient(90deg,#2ecc71,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .right{display:flex;gap:4px;flex-wrap:wrap}.right button{background:linear-gradient(#ff8c00,#2e8b57);border:0;color:#fff;padding:6px 9px;border-radius:16px;font-size:11px;cursor:pointer}
 .fixedWrap{position:sticky;top:68px;z-index:150;background:#000}
+.bannerFixed{position:relative !important}
 .bannerFixed img{width:100%;height:280px;object-fit:cover;display:block}
+.bannerText{position:absolute !important;bottom:0 !important;left:0 !important;width:100% !important;background:linear-gradient(transparent,rgba(0,0,0,0.85)) !important;text-align:center !important;padding:30px 10px 12px !important;z-index:5}
+.bannerText h2{color:#fff !important;font-size:26px !important;font-weight:900 !important;text-shadow:2px 2px 4px #000,0 0 15px #ff8c00 !important;margin:0 !important}
+.bannerText p{color:#ffe600 !important;font-size:12px !important;font-weight:700 !important;margin:4px 0 !important;text-shadow:1px 1px 2px #000 !important}
+.bannerText a{display:inline-block !important;background:#ff8c00 !important;color:#fff !important;padding:5px 15px !important;border-radius:20px !important;font-size:12px !important;font-weight:900 !important;text-decoration:none !important;margin-top:4px !important}
 .catBar{display:flex;gap:6px;padding:8px;overflow-x:auto;background:#111;border-bottom:1px solid #333;white-space:nowrap}
 .catBar::-webkit-scrollbar{display:none}
 .catBar button{background:#1a1a1a;border:1px solid #333;color:#ccc;padding:7px 12px;border-radius:18px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;flex-shrink:0}
 .catBar button.active{background:#ff8c00;color:#fff}
-.box{padding:8px}.sec{padding:12px 8px;min-height:60vh;background:#0a0a0a;border-top:2px solid #ff8c00;margin-top:10px}.hidden{display:none !important}
+.box{padding:0}.sec{padding:12px 8px;min-height:60vh;background:#0a0a0a;border-top:2px solid #ff8c00;margin-top:10px}.hidden{display:none !important}
 h3{color:#ff8c00;font-size:13px;margin:10px 0 8px;text-align:center}
 h4{color:#0f0;text-align:center;margin:10px 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.card{background:#111;border:1px solid #222;border-radius:12px;text-align:center;overflow:hidden;padding-bottom:8px;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:12px 4px}
+.card{background:#111;border:1px solid #222;border-radius:12px;text-align:center;overflow:hidden;padding-bottom:8px;cursor:pointer;margin:0;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
 .card img{width:100%;height:130px;object-fit:contain;background:#fff}
 .card p{font-size:11px;margin:4px 0}.card span{color:#ff8c00;font-size:11px}
 .card button{background:#ff5a00;border:0;color:#fff;width:90%;padding:6px;border-radius:6px;font-weight:700;margin-top:3px;cursor:pointer}
@@ -54,14 +59,14 @@ h4{color:#0f0;text-align:center;margin:10px 0}
 .chatInput{display:flex;gap:6px;padding:10px;background:#000;border-top:1px solid #333}
 .chatInput input{flex:1;padding:12px 15px;border-radius:25px;border:1px solid #333;background:#111;color:#fff;font-size:12px}
 .chatInput button{background:linear-gradient(135deg,#25D366,#128C7E);border:0;color:#fff;width:45px;height:45px;border-radius:50%;cursor:pointer}
-.bottomGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;background:#0a0a0a;border-top:2px solid #ff8c00;padding:10px}
+.bottomGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;background:#0a0a0a;border-top:2px solid #ff8c00;padding:12px 4px}
 @media(max-width:700px){.bottomGrid{grid-template-columns:1fr}}
 .addressBox{background:#1a1a1a;border:1px solid #ff8c00;border-radius:15px;padding:12px;display:flex;gap:10px;margin-top:8px}
 .addrIcon{font-size:30px;background:#222;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid #ff8c00}
 .addrInfo h4{color:#ff8c00;font-size:13px;margin-bottom:6px;text-align:left}
 .addrInfo p{font-size:11px;color:#fff;margin:3px 0;text-align:left}
 .paymentSection{background:#0f0f0f;border-top:2px solid #ff8c00;padding:12px 8px;margin-top:10px}
-.payGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.payGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0;padding:10px 4px}
 .payCard{background:#fff !important;border:0 !important;border-radius:10px !important;padding:12px 8px !important;text-align:center !important}
 .payCard span{color:#000 !important;font-size:18px !important;font-weight:900 !important;display:block !important}
 .payCard p{color:#000 !important}
@@ -109,8 +114,6 @@ h4{color:#0f0;text-align:center;margin:10px 0}
 .mapText{font-size:11px;color:#fff;margin:8px 0;text-align:center}
 .mapBtnBig{display:block;background:#1877f2;color:#fff;text-decoration:none;padding:10px;border-radius:20px;font-weight:700;font-size:12px;margin-top:8px;text-align:center}
 body{background:linear-gradient(180deg,#0b2a5b,#071a3a) !important}
-.topBarWrap{background:#ff6a00 !important}
-.topBarTrack{color:#fff !important}
 header{background:#0b2a5b !important;border-bottom:2px solid #ff6a00 !important}
 .fixedWrap{background:#0b2a5b !important}
 .catBar{background:#0a7a42 !important;border-bottom:2px solid #ff6a00 !important}
@@ -136,3 +139,11 @@ header{background:#0b2a5b !important;border-bottom:2px solid #ff6a00 !important}
 #adminFullPage{background:#0b2a5b !important}
 .adminFullHeader{background:#ff6a00 !important;border-bottom:0 !important}
 .adminFullHeader h2{color:#fff !important}
+/* বামে-ডানে চাপানো + মাঝে গ্যাপ + ব্যানার লেখা + সবুজ রানিং - ফাইনাল */
+.grid{grid-template-columns:1fr 1fr !important;gap:16px !important;padding:12px 4px !important}
+.box{padding:0 !important}
+.card{margin:0 !important;border-radius:12px !important}
+.payGrid{gap:14px !important;padding:10px 4px !important}
+.bottomGrid{gap:12px !important;padding:12px 4px !important}
+.topBarWrap{background:linear-gradient(90deg,#0a7a42,#0f9d58,#0a7a42) !important}
+.topBarTrack{color:#fff !important}
